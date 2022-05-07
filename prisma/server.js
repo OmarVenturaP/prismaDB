@@ -57,6 +57,12 @@ app.get('/students', async (request, response) => {
     response.json(allStudents)
 });
 
+app.get('/students/:id', async (request, response) => {
+    const id = request.params.id
+    const student = await prisma.student.findUnique({where: {id: parseInt(id)}});
+    response.json(student);
+});
+
 app.listen(port, () => {
     console.log(`Listening to request on port ${port}`);
 });

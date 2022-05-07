@@ -97,7 +97,43 @@ const prisma = new PrismaClient();
         }
     });
 
-    console.log('Create 3 explorers');
+    const Warren = await prisma.student.upsert({
+        where: { name: 'Warren' },
+        update: {},
+        create: {
+            name: 'Warren',
+        	lang: "elixir",
+            missionComander: "Carlo Gilmar",
+            enrollments:678,
+            hasCertification: true
+        },
+    });
+
+    const Lucinda = await prisma.student.upsert({
+        where: { name: 'Lucinda' },
+        update: {},
+        create: {
+            name: 'Lucinda',
+        	lang: "node",
+            missionComander: "Carlo Gilmar",
+            enrollments: 546,
+            hasCertification: true
+        },
+    });
+
+    const Fuentes = await prisma.student.upsert({
+        where: { name: 'Fuentes' },
+        update: {},
+        create: {
+            name: 'Fuentes',
+            lang: "java",
+            missionComander: "Carlo Gilmar",
+            enrollments:  342,
+            hasCertification: true
+        },
+    });
+
+    console.log('Create 3 Students');
   } catch(e) {
     console.error(e);
     process.exit(1);

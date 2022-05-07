@@ -45,6 +45,12 @@ app.post('/explorers', async (request, response) => {
 	return res.json({message: "Actualizado correctamente"});
 });
 
+app.delete('/explorers/:id', async (request, response) => {
+	const id = parseInt(request.params.id);
+	await prisma.explorer.delete({where: {id: id}});
+	return response.json({message: "Eliminado correctamente"});
+});
+
 app.listen(port, () => {
     console.log(`Listening to request on port ${port}`);
 });

@@ -63,6 +63,19 @@ app.get('/students/:id', async (request, response) => {
     response.json(student);
 });
 
+app.post('/students', async (request, response) => {
+    const student = {
+        name: request.body.name,
+        lang: request.body.lang,
+        missionComander: request.body.missionComander,
+        enrollments: request.body.enrollments,
+        hasCertification: request.body.hasCertification
+     };
+    const message = 'Student creado.';
+    await prisma.student.create({data: student});
+    return response.json({message});
+  });
+
 app.listen(port, () => {
     console.log(`Listening to request on port ${port}`);
 });

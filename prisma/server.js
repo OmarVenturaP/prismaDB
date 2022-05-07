@@ -74,7 +74,21 @@ app.post('/students', async (request, response) => {
     const message = 'Student creado.';
     await prisma.student.create({data: student});
     return response.json({message});
-  });
+});
+
+app.put('/students/:id', async (request, response) => {
+	const id = parseInt(req.params.id);
+	await prisma.student.update({
+		where: {
+			id: id
+		},
+		data: {
+            lang: request.body.lang,
+            missionComander: request.body.missionComander,
+		}
+	});
+    return response.json({message: "Actualizado correctamente"});
+});
 
 app.listen(port, () => {
     console.log(`Listening to request on port ${port}`);

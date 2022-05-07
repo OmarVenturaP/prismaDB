@@ -90,6 +90,12 @@ app.put('/students/:id', async (request, response) => {
     return response.json({message: "Actualizado correctamente"});
 });
 
+app.delete('/students/:id', async (request, response) => {
+	const id = parseInt(request.params.id);
+	await prisma.student.delete({where: {id: id}});
+	return response.json({message: "Eliminado correctamente"});
+});
+
 app.listen(port, () => {
     console.log(`Listening to request on port ${port}`);
 });

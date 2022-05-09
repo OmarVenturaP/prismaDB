@@ -194,6 +194,12 @@ app.put("/missionCommanders/:id", async (request, response) => {
     return response.json({message: "Actualizado correctamente"});
 });
 
+app.delete("/missionCommanders/:id", async (request, response) => {
+    const id = parseInt(request.params.id);
+    await prisma.missionCommander.delete({where: {id: id}});
+    response.set("Access-Control-Allow-Origin", "*");
+    return response.json({message: "Eliminado correctamente"});
+});
 // Cors
 const cors = require("cors");
 

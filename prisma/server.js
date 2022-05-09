@@ -167,6 +167,20 @@ app.get("/missionCommanders/:id", async (request, response) => {
     response.json(missionCommanders);
 });
 
+app.post("/missionCommanders", async (request, response) => {
+    const missionCommander = {
+        name: request.body.name,
+        username: request.body.username,
+        mainStack: request.body.mainStack,
+        currentEnrollmend: request.body.currentEnrollmend,
+        hasAzureCertification: request.body.hasAzureCertification
+    };
+    const message = "missionCommander creado.";
+    await prisma.missionCommander.create({data: missionCommander});
+    response.set("Access-Control-Allow-Origin", "*");
+    return response.json({message});
+});
+
 // Cors
 const cors = require("cors");
 

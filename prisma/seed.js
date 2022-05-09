@@ -132,6 +132,7 @@ const prisma = new PrismaClient();
                 hasCertification: true
             },
         });
+
         const Joseph = await prisma.fellow.upsert({
             where: { name: "Joseph" },
             update: {},
@@ -143,6 +144,7 @@ const prisma = new PrismaClient();
                 hasAzureCertification: true
             },
         });
+        
         const Raul = await prisma.fellow.upsert({
             where: { name: "Raul" },
             update: {},
@@ -154,6 +156,7 @@ const prisma = new PrismaClient();
                 hasAzureCertification: false
             },
         });
+        
         const Grettel = await prisma.fellow.upsert({
             where: { name: "Grettel" },
             update: {},
@@ -166,7 +169,41 @@ const prisma = new PrismaClient();
             },
         });
 
-        console.log("Create 3 fellows");
+        const Carlo = await prisma.missionCommander.upsert({
+            where: { name: "Carlo" },
+            update: {},
+            create: {
+                name: "Carlo",
+                username: "carlo_gilmar",
+                mainStack: "elixir",
+                currentEnrollmend:  true,
+                hasAzureCertification: true
+            },
+        });
+        const Rodrigo = await prisma.missionCommander.upsert({
+            where: { name: "Rodrigo" },
+            update: {},
+            create: {
+                name: "Rodrigo",
+                username: "romarpla",
+                mainStack: "ember",
+                currentEnrollmend:  true,
+                hasAzureCertification: true
+            },
+        });
+        const Fernanda = await prisma.missionCommander.upsert({
+            where: { name: "Fernanda" },
+            update: {},
+            create: {
+                name: "Fernanda",
+                username: "fer8a",
+                mainStack: "Java",
+                currentEnrollmend:  true,
+                hasAzureCertification: true
+            },
+        });
+
+        console.log("Create 3 missionCommander");
     } catch(e) {
         console.error(e);
         process.exit(1);

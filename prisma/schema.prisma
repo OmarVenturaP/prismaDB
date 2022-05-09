@@ -36,3 +36,12 @@ model fellow {
   currentEnrollmend Boolean
   hasAzureCertification Boolean
 }
+
+model missionCommander {
+  id Int @id @default(autoincrement())
+  name String @unique
+  username String
+  mainStack String
+  currentEnrollmend Boolean
+  hasAzureCertification Boolean
+}

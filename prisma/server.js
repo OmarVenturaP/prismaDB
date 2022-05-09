@@ -153,6 +153,13 @@ app.delete("/fellows/:id", async (request, response) => {
     return response.json({message: "Eliminado correctamente"});
 });
 
+// Modelo missionCommanders
+app.get("/missionCommanders", async (request, response) => {
+    const allmissionCommanders = await prisma.missionCommander.findMany({});
+    response.set("Access-Control-Allow-Origin", "*");
+    response.json(allmissionCommanders);
+});
+
 // Cors
 const cors = require("cors");
 

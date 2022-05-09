@@ -132,8 +132,41 @@ const prisma = new PrismaClient();
             hasCertification: true
         },
     });
+    const Joseph = await prisma.fellow.upsert({
+        where: { name: 'Joseph' },
+        update: {},
+        create: {
+            name: 'Joseph',
+            username: "venturas99",
+            mainStack: "NodeJS",
+            currentEnrollmend:  true,
+            hasAzureCertification: true
+        },
+    });
+    const Raul = await prisma.fellow.upsert({
+        where: { name: 'Raul' },
+        update: {},
+        create: {
+            name: 'Raul',
+            username: "veles",
+            mainStack: "java",
+            currentEnrollmend:  true,
+            hasAzureCertification: false
+        },
+    });
+    const Grettel = await prisma.fellow.upsert({
+        where: { name: 'Grettel' },
+        update: {},
+        create: {
+            name: 'Grettel',
+            username: "villareal",
+            mainStack: "PHP",
+            currentEnrollmend:  false,
+            hasAzureCertification: true
+        },
+    });
 
-    console.log('Create 3 Students');
+    console.log('Create 3 fellows');
   } catch(e) {
     console.error(e);
     process.exit(1);

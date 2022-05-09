@@ -112,6 +112,13 @@ app.get('/fellows', async (request, response) => {
     response.json(allFellow)
 });
 
+app.get('/fellows/:id', async (request, response) => {
+    const id = request.params.id
+    const fellows = await prisma.fellow.findUnique({where: {id: parseInt(id)}});
+    response.set("Access-Control-Allow-Origin", "*");
+    response.json(fellows);
+});
+
 // Cors
 const cors = require('cors');
 

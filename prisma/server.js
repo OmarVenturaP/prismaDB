@@ -181,6 +181,19 @@ app.post("/missionCommanders", async (request, response) => {
     return response.json({message});
 });
 
+app.put("/missionCommanders/:id", async (request, response) => {
+    const id = parseInt(req.params.id);
+    await prisma.missionCommander.update({
+        where: {
+            id: id
+        },
+        data: {
+            mainStack: request.body.mainStack,
+        }
+    });
+    return response.json({message: "Actualizado correctamente"});
+});
+
 // Cors
 const cors = require("cors");
 

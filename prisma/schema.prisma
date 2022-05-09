@@ -27,3 +27,12 @@ model Student {
   enrollments Int
   hasCertification Boolean @default(false)
 }
+
+model fellow {
+  id Int @id @default(autoincrement())
+  name String @unique
+  username String
+  mainStack String
+  currentEnrollmend Boolean
+  hasAzureCertification Boolean
+}

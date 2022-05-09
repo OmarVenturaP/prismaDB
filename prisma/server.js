@@ -12,12 +12,14 @@ app.get('/', (request, response) => {
 
 app.get('/explorers', async (request, response) => {
     const allExplorers = await prisma.explorer.findMany({})
+    response.set("Access-Control-Allow-Origin", "*");
     response.json(allExplorers)
 });
 
 app.get('/explorers/:id', async (request, response) => {
     const id = request.params.id
     const explorer = await prisma.explorer.findUnique({where: {id: parseInt(id)}});
+    response.set("Access-Control-Allow-Origin", "*");
     response.json(explorer);
 });
 
@@ -29,6 +31,7 @@ app.post('/explorers', async (request, response) => {
      };
     const message = 'Explorer creado.';
     await prisma.explorer.create({data: explorer});
+    response.set("Access-Control-Allow-Origin", "*");
     return response.json({message});
   });
 
@@ -42,24 +45,28 @@ app.post('/explorers', async (request, response) => {
 			mission: req.body.mission
 		}
 	})
+    res.set("Access-Control-Allow-Origin", "*");
 	return res.json({message: "Actualizado correctamente"});
 });
 
 app.delete('/explorers/:id', async (request, response) => {
 	const id = parseInt(request.params.id);
 	await prisma.explorer.delete({where: {id: id}});
+    response.set("Access-Control-Allow-Origin", "*");
 	return response.json({message: "Eliminado correctamente"});
 });
 
 // Modelo Students
 app.get('/students', async (request, response) => {
     const allStudents = await prisma.student.findMany({})
+    response.set("Access-Control-Allow-Origin", "*");
     response.json(allStudents)
 });
 
 app.get('/students/:id', async (request, response) => {
     const id = request.params.id
     const student = await prisma.student.findUnique({where: {id: parseInt(id)}});
+    response.set("Access-Control-Allow-Origin", "*");
     response.json(student);
 });
 
@@ -73,6 +80,7 @@ app.post('/students', async (request, response) => {
      };
     const message = 'Student creado.';
     await prisma.student.create({data: student});
+    response.set("Access-Control-Allow-Origin", "*");
     return response.json({message});
 });
 
@@ -93,8 +101,17 @@ app.put('/students/:id', async (request, response) => {
 app.delete('/students/:id', async (request, response) => {
 	const id = parseInt(request.params.id);
 	await prisma.student.delete({where: {id: id}});
+    response.set("Access-Control-Allow-Origin", "*");
 	return response.json({message: "Eliminado correctamente"});
 });
+
+// Cors
+const cors = require('cors');
+
+const corsOptions = {
+    origin: "http://localhost:8081",
+};
+app.use(cors(corsOptions));
 
 app.listen(port, () => {
     console.log(`Listening to request on port ${port}`);

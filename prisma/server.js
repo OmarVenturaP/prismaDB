@@ -160,6 +160,13 @@ app.get("/missionCommanders", async (request, response) => {
     response.json(allmissionCommanders);
 });
 
+app.get("/missionCommanders/:id", async (request, response) => {
+    const id = request.params.id;
+    const missionCommanders = await prisma.missionCommander.findUnique({where: {id: parseInt(id)}});
+    response.set("Access-Control-Allow-Origin", "*");
+    response.json(missionCommanders);
+});
+
 // Cors
 const cors = require("cors");
 

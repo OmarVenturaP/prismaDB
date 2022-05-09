@@ -119,6 +119,20 @@ app.get('/fellows/:id', async (request, response) => {
     response.json(fellows);
 });
 
+app.post('/fellows', async (request, response) => {
+    const fellow = {
+        name: request.body.name,
+        username: request.body.username,
+        mainStack: request.body.mainStack,
+        currentEnrollmend: request.body.currentEnrollmend,
+        hasAzureCertification: request.body.hasAzureCertification
+     };
+    const message = 'fellow creado.';
+    await prisma.fellow.create({data: fellow});
+    response.set("Access-Control-Allow-Origin", "*");
+    return response.json({message});
+});
+
 // Cors
 const cors = require('cors');
 

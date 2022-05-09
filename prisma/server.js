@@ -133,6 +133,19 @@ app.post('/fellows', async (request, response) => {
     return response.json({message});
 });
 
+app.put('/fellows/:id', async (request, response) => {
+	const id = parseInt(req.params.id);
+	await prisma.fellow.update({
+		where: {
+			id: id
+		},
+		data: {
+            mainStack: request.body.mainStack,
+		}
+	});
+    return response.json({message: "Actualizado correctamente"});
+});
+
 // Cors
 const cors = require('cors');
 

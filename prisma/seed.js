@@ -102,7 +102,7 @@ const prisma = new PrismaClient();
             update: {},
             create: {
                 name: "Warren",
-        	lang: "elixir",
+        	    lang: "elixir",
                 missionComander: "Carlo Gilmar",
                 enrollments:678,
                 hasCertification: true
@@ -114,7 +114,7 @@ const prisma = new PrismaClient();
             update: {},
             create: {
                 name: "Lucinda",
-        	lang: "node",
+        	    lang: "node",
                 missionComander: "Carlo Gilmar",
                 enrollments: 546,
                 hasCertification: true

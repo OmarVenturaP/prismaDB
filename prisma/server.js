@@ -85,7 +85,7 @@ app.post("/students", async (request, response) => {
 });
 
 app.put("/students/:id", async (request, response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(request.params.id);
     await prisma.student.update({
         where: {
             id: id
@@ -134,7 +134,7 @@ app.post("/fellows", async (request, response) => {
 });
 
 app.put("/fellows/:id", async (request, response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(request.params.id);
     await prisma.fellow.update({
         where: {
             id: id
@@ -182,7 +182,7 @@ app.post("/missionCommanders", async (request, response) => {
 });
 
 app.put("/missionCommanders/:id", async (request, response) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(request.params.id);
     await prisma.missionCommander.update({
         where: {
             id: id

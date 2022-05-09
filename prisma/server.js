@@ -105,6 +105,13 @@ app.delete('/students/:id', async (request, response) => {
 	return response.json({message: "Eliminado correctamente"});
 });
 
+// Modelo Fellows
+app.get('/fellows', async (request, response) => {
+    const allFellow = await prisma.fellow.findMany({})
+    response.set("Access-Control-Allow-Origin", "*");
+    response.json(allFellow)
+});
+
 // Cors
 const cors = require('cors');
 
